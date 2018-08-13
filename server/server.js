@@ -5,7 +5,9 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://user:user@localhost:27017/sample');
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://user:user@localhost:27017/sample'
+);
 
 const { User } = require('./models/user');
 const { auth } = require('./middleware/auth');
